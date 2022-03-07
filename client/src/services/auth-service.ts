@@ -78,8 +78,8 @@ const AuthService = new (class AuthService {
 
   public async authenticate(token: string): Promise<string | true> {
     try {
-      const { data } = await this.requester.post<AuthResponse>('/', { token });
-      reduxStore.dispatch(login({ user: data.user }));
+      const { data } = await this.requester.post<User>('/', { token });
+      reduxStore.dispatch(login({ user: data }));
       this.setAuth(token);
       return true;
     } catch (error) {
