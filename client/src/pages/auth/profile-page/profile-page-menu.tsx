@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import AuthService from '../../../services/auth-service';
 import ProfilePageBackgroundVideo from './components/profile-page-background-video';
 
@@ -139,23 +141,34 @@ const ProfilePageMenu: React.FC<ProfilePageMenuProps> = ({
             >
               <LogoutIcon />
             </IconButton>
+            <Link to="/swiper">
+              <IconButton
+                sx={{ position: 'absolute', right: 0, top: '380px' }}
+                size="large"
+                color="primary"
+              >
+                <ViewCarouselIcon />
+              </IconButton>
+            </Link>
           </Box>
         </StyledBox>
       )}
-      {isSmDown && (
-        <Box sx={{ display: { xs: 'flex' }, flexDirection: 'column' }}>
-          <Typography variant="h2" color="secondary.main" sx={{ margin: 'auto', mt: 6, mb: 2 }}> MY PROFILE</Typography>
-          <StyledTabs
-            indicatorColor="secondary"
-            textColor="secondary"
-            value={pageIndex}
-            onChange={handleChange}
-          >
-            <StyledMobileTab label="Profile details" disableRipple />
-            <StyledMobileTab label="Profile media" disableRipple />
-          </StyledTabs>
-        </Box>
-      )}
+      {
+        isSmDown && (
+          <Box sx={{ display: { xs: 'flex' }, flexDirection: 'column' }}>
+            <Typography variant="h2" color="secondary.main" sx={{ margin: 'auto', mt: 6, mb: 2 }}> MY PROFILE</Typography>
+            <StyledTabs
+              indicatorColor="secondary"
+              textColor="secondary"
+              value={pageIndex}
+              onChange={handleChange}
+            >
+              <StyledMobileTab label="Profile details" disableRipple />
+              <StyledMobileTab label="Profile media" disableRipple />
+            </StyledTabs>
+          </Box>
+        )
+      }
     </Box>
   );
 };
